@@ -4,6 +4,7 @@ const totalSlides = slides.length;
 const dots = document.getElementsByClassName("dot");
 const dotContainer = document.querySelector(".dots");
 const timer = 5000;
+let PlayInterval;
 
 document
     .getElementById("carousel-button-next")
@@ -23,6 +24,8 @@ function hideAllSlides() {
 function moveToNextSlide() {
     hideAllSlides();
     hideDotActive();
+    clearInterval(PlayInterval);
+    autoPlay();
     if (slidePosition === totalSlides - 1) {
         slidePosition = 0;
     } else {
@@ -35,6 +38,8 @@ function moveToNextSlide() {
 function moveToPrevSlide() {
     hideAllSlides();
     hideDotActive();
+    clearInterval(PlayInterval);
+    autoPlay();
     if (slidePosition === 0) {
         slidePosition = totalSlides - 1;
     } else {
@@ -58,4 +63,6 @@ function hideDotActive() {
     }
 }
 
-let autoSlide = setInterval(moveToNextSlide, timer);
+function autoPlay() {
+    PlayInterval = autoSlide = setInterval(moveToNextSlide, timer);
+}
